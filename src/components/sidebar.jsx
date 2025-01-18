@@ -7,13 +7,13 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
       <div
         className={`fixed top-0 left-0 h-full bg-gray-800 text-white shadow-md transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
-        } transition-transform duration-300 ease-in-out z-50 w-60`}
+        } transition-transform duration-500 ease-in-out z-50 w-60`}
       >
-        <div className="flex items-center justify-between px-4 py-4">
-          <h2 className="text-2xl font-bold">Sidebar</h2>
+        <div className="flex items-center justify-between px-4 py-4 ">
+          <h2 className="text-2xl font-bold">iTank</h2>
           <button
             onClick={() => setIsOpen(false)}
-            className="text-gray-300 hover:text-white focus:outline-none"
+            className="text-gray-300 hover:text-white  focus:outline-none"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -34,7 +34,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
         <nav className="mt-4">
           <a
             href="#"
-            className="block px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white"
+            className="block px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white "
           >
             Home
           </a>
@@ -85,4 +85,4 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
   );
 };
 
-export default Sidebar;
+export default Sidebar;
