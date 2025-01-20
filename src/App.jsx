@@ -22,8 +22,8 @@ const App = () => {
 
       {/* Main Content */}
       <main
-        className={`flex-1 bg-gray-200 p-4  transition-all duration-500 ease-in-out ${
-          isOpen ? "pl-60" : "pl-20"
+        className={`flex-1 p-4  transition-all duration-500 ease-in-out ${
+          isOpen ? "pl-20 lg:pl-60" : "pl-20"
         }`}
       >
         <h1 className="text-3xl font-bold">Dashboard</h1>
