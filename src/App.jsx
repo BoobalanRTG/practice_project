@@ -1,17 +1,29 @@
 import React, { useState } from "react";
 import Sidebar from "./components/sidebar";
 import Cards from "./components/cards";
+import navItems from "./components/navItems";
 
 const App = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="flex">
-      <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
+    <div className="relative flex">
+      <Sidebar isOpen={isOpen} setIsOpen={setIsOpen}>
+        {navItems.map((item, index) => (
+          <Sidebar.Item
+            key={index}
+            icon={item.icon}
+            text={item.text}
+            active={item.active}
+            alert={item.alert}
+          />
+        ))}
+      </Sidebar>
 
+      {/* Main Content */}
       <main
-        className={`flex-1 bg-gray-200 p-4 transition-all duration-500 ease-in-out ${
-          isOpen ? "md:ml-60 ml-0" : "ml-0 pl-16"
+        className={`flex-1 bg-gray-200 p-4  transition-all duration-500 ease-in-out ${
+          isOpen ? "pl-60" : "pl-20"
         }`}
       >
         <h1 className="text-3xl font-bold">Dashboard</h1>
@@ -21,4 +33,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default App;
