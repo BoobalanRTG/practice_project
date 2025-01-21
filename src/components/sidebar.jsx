@@ -1,11 +1,22 @@
+import React, { createContext, useState, useContext } from "react";
+import { useNavigate, useLocation } from "react-router-dom"; // Import useLocation
+import { LayoutDashboard, LifeBuoy, UserPlus, Database } from "lucide-react"; // Icons
 import { MoreVertical, ChevronLast, ChevronFirst } from "lucide-react";
-import { createContext, useState, useContext } from "react";
-import logo from "../assets/itank-white.png";
 
+// Create a context for Sidebar state
 const SidebarContext = createContext();
 
-export default function Sidebar({ isOpen, setIsOpen, children }) {
+export default function Sidebar({ isOpen, setIsOpen }) {
   const [expanded, setExpanded] = useState(isOpen);
+
+  // Define the navigation items here
+  const navItems = [
+    { text: "Dashboard", icon: <LayoutDashboard />, path: "/", alert: false },
+    { text: "User creation", icon: <UserPlus />, path: "/usercreation", alert: false },
+    { text: "Device creation", icon: <Database />, path: "/devicecreation", alert: false },
+    { text: "Tank list", icon: <Database />, path: "/tanklist", alert: false },
+    { text: "Help", icon: <LifeBuoy />, path: "/help", alert: false },
+  ];
 
   return (
     <aside
@@ -14,12 +25,8 @@ export default function Sidebar({ isOpen, setIsOpen, children }) {
       }`}
     >
       <nav className="h-full flex flex-col">
+        {/* Header Section */}
         <div className="p-4 pb-2 flex justify-between items-center">
-          {/* <img
-            src={logo}
-            className={`transition-all ${expanded ? "w-32" : "w-0"}`}
-            alt="Logo"
-          /> */}
           <h1
             className={`transition-all duration-500 text-2xl font-bold overflow-hidden ${
               expanded ? "w-32 opacity-100" : "w-0 opacity-0"
@@ -38,10 +45,22 @@ export default function Sidebar({ isOpen, setIsOpen, children }) {
           </button>
         </div>
 
+        {/* Navigation Items */}
         <SidebarContext.Provider value={{ expanded }}>
-          <ul className="flex-1 px-3">{children}</ul>
+          <ul className="flex-1 px-3">
+            {navItems.map((item, index) => (
+              <Sidebar.Item
+                key={index}
+                icon={item.icon}
+                text={item.text}
+                path={item.path}
+                alert={item.alert}
+              />
+            ))}
+          </ul>
         </SidebarContext.Provider>
 
+        {/* Footer Section */}
         <div className="border-t flex p-3">
           <img
             src="https://ui-avatars.com/api/?background=c7d2fe&color=3730a3&bold=true"
@@ -65,14 +84,24 @@ export default function Sidebar({ isOpen, setIsOpen, children }) {
   );
 }
 
-Sidebar.Item = function SidebarItem({ icon, text, active, alert }) {
+// Sidebar Item Component
+Sidebar.Item = function SidebarItem({ icon, text, path, alert }) {
   const { expanded } = useContext(SidebarContext);
+  const navigate = useNavigate();
+  const location = useLocation(); // Get the current path
+
+  const isActive = location.pathname === path; // Check if this item is active
+
+  const handleNavigation = () => {
+    navigate(path); // Navigate to the specified path
+  };
 
   return (
     <li
+      onClick={handleNavigation}
       className={`relative flex items-center py-2 px-3 my-1 font-medium rounded-md cursor-pointer transition-colors group ${
-        active
-          ? "bg-gradient-to-tr from-purple-300 to-indigo-100 text-indigo-800"
+        isActive
+          ? "bg-indigo-500 text-white" // Active item styles
           : "hover:bg-indigo-50 text-gray-600"
       }`}
     >
