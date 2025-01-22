@@ -5,6 +5,8 @@ import Dashboard from "./pages/dashboard";
 import UserCreation from "./pages/userCreation";
 import DeviceCreation from "./pages/deviceCreation";
 import Tanklist from "./pages/tanklist";
+// import "bootstrap/dist/css/bootstrap.min.css";
+
 
 const App = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);

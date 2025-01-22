@@ -1,7 +1,7 @@
 import React, { createContext, useState, useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom"; // Import useLocation
-import { LayoutDashboard, LifeBuoy, UserPlus, Database } from "lucide-react"; // Icons
-import { MoreVertical, ChevronLast, ChevronFirst } from "lucide-react";
+import { LayoutDashboard, LifeBuoy, UserPlus, Database,SatelliteDish } from "lucide-react"; // Icons
+import { ChevronLast, ChevronFirst } from "lucide-react";
 
 // Create a context for Sidebar state
 const SidebarContext = createContext();
@@ -12,9 +12,9 @@ export default function Sidebar({ isOpen, setIsOpen }) {
   // Define the navigation items here
   const navItems = [
     { text: "Dashboard", icon: <LayoutDashboard />, path: "/", alert: false },
-    { text: "User creation", icon: <UserPlus />, path: "/usercreation", alert: false },
-    { text: "Device creation", icon: <Database />, path: "/devicecreation", alert: false },
-    { text: "Tank list", icon: <Database />, path: "/tanklist", alert: false },
+    { text: "User", icon: <UserPlus />, path: "/usercreation", alert: false },
+    { text: "Device", icon: <SatelliteDish />, path: "/devicecreation", alert: false },
+    { text: "Tanklist", icon: <Database />, path: "/tanklist", alert: false },
     { text: "Help", icon: <LifeBuoy />, path: "/help", alert: false },
   ];
 
@@ -76,7 +76,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
               <h4 className="font-semibold">Boobalan</h4>
               <span className="text-xs text-gray-600">Admin</span>
             </div>
-            <MoreVertical size={20} />
+            {/* <MoreVertical size={20} /> */}
           </div>
         </div>
       </nav>
@@ -101,8 +101,8 @@ Sidebar.Item = function SidebarItem({ icon, text, path, alert }) {
       onClick={handleNavigation}
       className={`relative flex items-center py-2 px-3 my-1 font-medium rounded-md cursor-pointer transition-colors group ${
         isActive
-          ? "bg-indigo-500 text-white" // Active item styles
-          : "hover:bg-indigo-50 text-gray-600"
+          ? "bg-pink-500 text-white" // Active item styles
+          : "hover:bg-pink-100 text-gray-600"
       }`}
     >
       {icon}
